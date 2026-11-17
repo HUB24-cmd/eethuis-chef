@@ -1,13 +1,10 @@
 /* Instellingen van het restaurant. Pas hier aan, dan verandert de site en de bestel-server mee.
-   pickup.payment: "whatsapp" = afhalen bestellen via WhatsApp, betalen bij ophalen
-                   "online"   = afhalen bestellen en betalen op de site via Buckaroo
-   whatsapp: nummer in internationaal formaat zonder + of spaties, bv. 31612345678
+   pickup.enabled: true zodra Buckaroo is ingesteld (afhalen bestellen en betalen op de site)
    delivery.mode: "thuisbezorgd" = bezorgen via Thuisbezorgd, "own" = bezorgen via deze site */
 window.SHOP={
  "name": "Eetcafé & Lunchroom Chef",
  "address": "Leyweg 920 D, 2545 GV Den Haag",
  "phone": "",
- "whatsapp": "",
  "api": "/api/",
  "hours": {
   "0": [
@@ -37,8 +34,8 @@ window.SHOP={
   ]
  },
  "pickup": {
-  "enabled": true,
-  "payment": "whatsapp",
+  "enabled": false,
+  "payment": "online",
   "prepMinutes": 20,
   "slotMinutes": 15
  },

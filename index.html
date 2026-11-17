@@ -6,10 +6,12 @@
 <title>Lunchroom Chef | Döner, Turkse pizza & pizza bestellen in Den Haag</title>
 <meta name="description" content="Döner, Turkse pizza, pizza's en kapsalons van Eetcafé & Lunchroom Chef aan de Leyweg in Den Haag. Bekijk de kaart en bestel rechtstreeks.">
 <meta name="theme-color" content="#12355B">
+<link rel="canonical" href="https://www.eethuischef.nl/">
+<meta property="og:url" content="https://www.eethuischef.nl/">
 <meta property="og:type" content="restaurant">
 <meta property="og:title" content="Eetcafé &amp; Lunchroom Chef, Den Haag">
 <meta property="og:description" content="Döner, Turkse pizza, pizza's en kapsalons aan de Leyweg in Den Haag. Bekijk de kaart en bestel rechtstreeks.">
-<meta property="og:image" content="img/hero-pizza.webp">
+<meta property="og:image" content="https://www.eethuischef.nl/img/hero-pizza.webp">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Eetcafé & Lunchroom Chef","servesCuisine":["Turks","Pizza","Döner"],"priceRange":"€","address":{"@type":"PostalAddress","streetAddress":"Leyweg 920 D","postalCode":"2545 GV","addressLocality":"Den Haag","addressCountry":"NL"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"12:00","closes":"19:30"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -557,7 +559,6 @@ const fmt=m=>String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(
 const HOURS=Object.fromEntries(Object.entries(CFG.hours).map(([d,h])=>[d,h?[T(h[0]),T(h[1])]:null]));
 const DAYS=["Zondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag"];
 const PICKUP=!!(CFG.pickup&&CFG.pickup.enabled);
-const PAY_WA=(CFG.pickup&&CFG.pickup.payment)==="whatsapp";
 const DELIV=!!(CFG.delivery&&CFG.delivery.enabled);
 const DELIV_EXT=DELIV&&CFG.delivery.mode==="thuisbezorgd";
 const DELIV_OWN=DELIV&&CFG.delivery.mode==="own";
@@ -620,7 +621,7 @@ function renderCart(){
        <div class="tot big"><span>Totaal</span><span>${eur(sub+feeNow())}</span></div>
        ${!ti.ok?`<div class="err">${esc(ti.msg)}</div>`:''}
        <button class="btn btn-primary checkout" ${reason?'disabled':''} onclick="goForm()">${reason?esc(reason):'Verder naar afrekenen'}</button>
-       <div class="note">${!bez&&PAY_WA?"Je betaalt bij het ophalen.":"Je betaalt veilig online."}</div>`;
+       <div class="note">Je betaalt veilig online.</div>`;
   }
   const pill=document.getElementById("cartPill");pill.classList.toggle("hide",!n||ext);
   document.getElementById("pillCount").textContent=`Bekijk bestelling · ${n} ${n===1?'item':'items'}`;
@@ -638,50 +639,37 @@ function readForm(){
   F.street=g("f_street");F.zip=g("f_zip");F.city=g("f_city");const t=document.getElementById("f_terms");F.terms=!!(t&&t.checked);
 }
 function renderForm(body,sub){
-  const bez=mode==="bezorgen",ti=timeInfo(),total=sub+feeNow(),wa=!bez&&PAY_WA;
+  const bez=mode==="bezorgen",ti=timeInfo(),total=sub+feeNow();
   if(!ti.ok){body.innerHTML=`<div class="err">${esc(ti.msg)}</div><button class="btn btn-ghost checkout" onclick="backCart()">← Terug</button>`;return}
   const opts=(ti.asap?[`<option value="asap">Zo snel mogelijk (± ${prep()} min)</option>`]:[]).concat(ti.slots.map(t=>`<option value="${fmt(t)}">${fmt(t)}</option>`)).join("");
   body.innerHTML=`<button class="back" onclick="backCart()">← Terug naar bestelling</button>
    <div class="field"><label for="f_name">Naam</label><input id="f_name" autocomplete="name" value="${esc(F.name)}"></div>
    <div class="field"><label for="f_phone">Telefoon</label><input id="f_phone" type="tel" autocomplete="tel" value="${esc(F.phone)}"></div>
-   ${wa?'':`<div class="field"><label for="f_email">E-mail</label><input id="f_email" type="email" autocomplete="email" value="${esc(F.email)}"></div>`}
+   <div class="field"><label for="f_email">E-mail</label><input id="f_email" type="email" autocomplete="email" value="${esc(F.email)}"></div>
    ${bez?`<div class="field"><label for="f_street">Straat en huisnummer</label><input id="f_street" autocomplete="street-address" value="${esc(F.street)}"></div>
    <div class="field"><label for="f_zip">Postcode</label><input id="f_zip" autocomplete="postal-code" value="${esc(F.zip)}"></div>
    <div class="field"><label for="f_city">Plaats</label><input id="f_city" autocomplete="address-level2" value="${esc(F.city)}"></div>`:''}
    <div class="field"><label for="f_time">${bez?'Bezorgtijd':'Afhaaltijd'} (vandaag)</label><select id="f_time">${opts}</select></div>
    <div class="field"><label for="f_note">Opmerking (optioneel)</label><textarea id="f_note" rows="2">${esc(F.note)}</textarea></div>
    <input class="hp" id="f_site" tabindex="-1" autocomplete="off" aria-hidden="true">
-   ${wa?'':`<label class="terms"><input type="checkbox" id="f_terms" ${F.terms?'checked':''}><span>Ik ga akkoord met de algemene voorwaarden en de privacyverklaring.</span></label>`}
+   <label class="terms"><input type="checkbox" id="f_terms" ${F.terms?'checked':''}><span>Ik ga akkoord met de algemene voorwaarden en de privacyverklaring.</span></label>
    <div class="tot big"><span>Totaal</span><span>${eur(total)}</span></div>
    <div class="err" id="f_err">${esc(errMsg)}</div>
-   ${wa?`<button class="btn btn-primary checkout" id="payBtn" onclick="sendWhatsApp()">Bestelling versturen via WhatsApp</button>
-   <div class="note">WhatsApp opent met je bestelling erin. Druk daar op verzenden. Je betaalt bij het ophalen.</div>`
-   :`<button class="btn btn-primary checkout" id="payBtn" ${busy?'disabled':''} onclick="submitOrder()">${busy?'Even geduld…':'Betalen · '+eur(total)}</button>
-   <div class="note">Je gaat daarna naar de beveiligde betaalpagina.</div>`}`;
+`<button class="btn btn-primary checkout" id="payBtn" ${busy?'disabled':''} onclick="submitOrder()">${busy?'Even geduld…':'Betalen · '+eur(total)}</button>
+   <div class="note">Je gaat daarna naar de beveiligde betaalpagina.</div>`;
   const sel=document.getElementById("f_time");if([...sel.options].some(o=>o.value===F.time))sel.value=F.time;
 }
 function validate(){
   if(F.name.length<2)return"Vul je naam in.";
   if(F.phone.replace(/\D/g,"").length<8)return"Vul een geldig telefoonnummer in.";
-  const wa=mode!=="bezorgen"&&PAY_WA;
-  if(!wa&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(F.email))return"Vul een geldig e-mailadres in.";
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(F.email))return"Vul een geldig e-mailadres in.";
   if(mode==="bezorgen"){
     if(F.street.length<3)return"Vul je straat en huisnummer in.";
     if(!/^[1-9][0-9]{3}\s?[A-Za-z]{2}$/.test(F.zip))return"Vul een geldige postcode in (bijvoorbeeld 2545 GV).";
     if(F.city.length<2)return"Vul je plaats in.";
   }
-  if(!wa&&!F.terms)return"Ga akkoord met de voorwaarden om te bestellen.";
+  if(!F.terms)return"Ga akkoord met de voorwaarden om te bestellen.";
   return"";
-}
-function sendWhatsApp(){
-  readForm();errMsg=validate();
-  const nr=String(CFG.whatsapp||"").replace(/\D/g,"");
-  if(!errMsg&&nr.length<10)errMsg="Bestellen via WhatsApp is nog niet ingesteld. Bel ons om te bestellen.";
-  if(errMsg){document.getElementById("f_err").textContent=errMsg;return}
-  const tijd=F.time==="asap"?"zo snel mogelijk":F.time;
-  const regels=cart.map(l=>`${l.q}x ${l.name}${l.sel.length?" ("+l.sel.join(", ")+")":""} - ${eur(l.price*l.q)}`).join("\n");
-  const txt=`Hoi ${CFG.name}, ik wil graag afhalen:\n\n${regels}\n\nTotaal: ${eur(subtotal())}\nAfhalen: vandaag ${tijd}\nNaam: ${F.name}\nTelefoon: ${F.phone}${F.note?"\nOpmerking: "+F.note:""}\n\nIk betaal bij het ophalen.`;
-  location.href="https://wa.me/"+nr+"?text="+encodeURIComponent(txt);
 }
 async function submitOrder(){
   if(busy)return;readForm();

@@ -14,8 +14,7 @@ Bestelsite voor Eetcafé & Lunchroom Chef, Leyweg 920 D, Den Haag. Draait op Net
 
 ## Hoe bestellen werkt
 - **Bezorgen**: via Thuisbezorgd (`delivery.mode: "thuisbezorgd"`). Met `"own"` loopt bezorgen via deze site.
-- **Afhalen, fase 1**: `pickup.payment: "whatsapp"`. De klant stuurt de bestelling via een vooraf ingevuld WhatsApp-bericht en betaalt bij ophalen. Vul `whatsapp` in met het nummer, bv. `31612345678`.
-- **Afhalen, fase 2**: `pickup.payment: "online"`. Bestellen en betalen op de site via Buckaroo. Zet eerst de variabelen hieronder in Netlify.
+- **Afhalen**: staat uit (`pickup.enabled: false`) tot Buckaroo is ingesteld. Daarna `true`: bestellen en betalen op de site.
 
 ## Netlify-instellingen (alleen voor online betalen)
 Site configuration > Environment variables. Deze waarden komen nooit in de code.
