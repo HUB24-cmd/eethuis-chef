@@ -655,7 +655,7 @@ function renderForm(body,sub){
    <label class="terms"><input type="checkbox" id="f_terms" ${F.terms?'checked':''}><span>Ik ga akkoord met de algemene voorwaarden en de privacyverklaring.</span></label>
    <div class="tot big"><span>Totaal</span><span>${eur(total)}</span></div>
    <div class="err" id="f_err">${esc(errMsg)}</div>
-`<button class="btn btn-primary checkout" id="payBtn" ${busy?'disabled':''} onclick="submitOrder()">${busy?'Even geduld…':'Betalen · '+eur(total)}</button>
+   <button class="btn btn-primary checkout" id="payBtn" ${busy?'disabled':''} onclick="submitOrder()">${busy?'Even geduld…':'Betalen · '+eur(total)}</button>
    <div class="note">Je gaat daarna naar de beveiligde betaalpagina.</div>`;
   const sel=document.getElementById("f_time");if([...sel.options].some(o=>o.value===F.time))sel.value=F.time;
 }
