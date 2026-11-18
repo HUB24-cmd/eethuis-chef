@@ -5,6 +5,7 @@ window.SHOP={
  "name": "Eetcafé & Lunchroom Chef",
  "address": "Leyweg 920 D, 2545 GV Den Haag",
  "phone": "",
+ "email": "info@eethuischef.nl",
  "api": "/api/",
  "hours": {
   "0": [

@@ -26,12 +26,12 @@ Site configuration > Environment variables. Deze waarden komen nooit in de code.
 | `BUCKAROO_LIVE` | `false` om te testen, `true` voor echt geld |
 | `BUCKAROO_METHODS` | `ideal` of bv. `ideal,bancontactmrcash,creditcard` |
 | `TOKEN_SECRET` | lange willekeurige tekst (min. 32 tekens) |
-| `SITE_URL` | `https://www.domein.nl` |
+| `SITE_URL` | `https://www.eethuischef.nl` |
 | `RESEND_API_KEY` | van resend.com, voor de bevestigingsmails |
-| `MAIL_FROM` | bv. `bestellingen@domein.nl` (domein eerst verifiëren in Resend) |
-| `MAIL_TO` | e-mailadres waar het restaurant bestellingen ontvangt |
+| `MAIL_FROM` | `info@eethuischef.nl` (domein eerst verifiëren in Resend) |
+| `MAIL_TO` | `info@eethuischef.nl` |
 
-In Buckaroo Plaza de push-URL instellen op `https://www.domein.nl/api/push`.
+In Buckaroo Plaza de push-URL instellen op `https://www.eethuischef.nl/api/push`.
 
 ## Beveiliging
 - Prijzen en opties komen op de server uit `menu.js`; de browser kan geen prijs doorgeven.
@@ -42,3 +42,9 @@ In Buckaroo Plaza de push-URL instellen op `https://www.domein.nl/api/push`.
 - Telefoon/WhatsApp, KvK- en btw-nummer van het restaurant invullen.
 - Privacyverklaring, algemene voorwaarden en allergeneninformatie.
 - Fase 2: Buckaroo-account, testbetaling, daarna live.
+
+## Domein (eethuischef.nl bij Strato)
+De e-mail (info@eethuischef.nl) draait bij Strato, dus de DNS blijft bij Strato. Alleen de website wijst naar Netlify:
+- `www` → CNAME naar `<sitenaam>.netlify.app`
+- `@` (zonder www) → A-record naar `75.2.60.5`
+De MX-records (mail) niet aanraken.
