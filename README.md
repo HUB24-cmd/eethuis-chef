@@ -26,12 +26,12 @@ Site configuration > Environment variables. Deze waarden komen nooit in de code.
 | `BUCKAROO_LIVE` | `false` om te testen, `true` voor echt geld |
 | `BUCKAROO_METHODS` | `ideal` of bv. `ideal,bancontactmrcash,creditcard` |
 | `TOKEN_SECRET` | lange willekeurige tekst (min. 32 tekens) |
-| `SITE_URL` | `https://www.eethuischef.nl` |
+| `SITE_URL` | `https://eethuischef.nl` |
 | `RESEND_API_KEY` | van resend.com, voor de bevestigingsmails |
 | `MAIL_FROM` | `info@eethuischef.nl` (domein eerst verifiëren in Resend) |
 | `MAIL_TO` | `info@eethuischef.nl` |
 
-In Buckaroo Plaza de push-URL instellen op `https://www.eethuischef.nl/api/push`.
+In Buckaroo Plaza de push-URL instellen op `https://eethuischef.nl/api/push`.
 
 ## Beveiliging
 - Prijzen en opties komen op de server uit `menu.js`; de browser kan geen prijs doorgeven.
