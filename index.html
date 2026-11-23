@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lunchroom Chef | Döner, Turkse pizza & pizza bestellen in Den Haag</title>
 <meta name="description" content="Döner, Turkse pizza, pizza's en kapsalons van Eetcafé & Lunchroom Chef aan de Leyweg in Den Haag. Bekijk de kaart en bestel rechtstreeks.">
-<meta name="theme-color" content="#12355B">
+<meta name="theme-color" content="#CF2E32">
 <link rel="canonical" href="https://eethuischef.nl/">
 <meta property="og:url" content="https://eethuischef.nl/">
 <meta property="og:type" content="restaurant">
@@ -17,9 +17,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --brand:#12355B; --brand-2:#0B2440; --accent:#E8A33D; --accent-2:#C9431E;
-  --bg:#FBF6EE; --card:#FFFFFF; --ink:#1B1A17; --muted:#6B655C; --line:#E9E0D2; --soft:#F3EADC;
-  --ok:#2E7D4F; --radius:18px; --shadow:0 10px 30px -12px rgba(18,53,91,.25);
+  --brand:#CF2E32; --brand-2:#7E1015; --accent:#F2B45A; --accent-2:#CF2E32;
+  --bg:#FFF8F4; --card:#FFFFFF; --ink:#1E1414; --muted:#6E5E5A; --line:#F0DDD5; --soft:#FBE9E2;
+  --ok:#2E7D4F; --radius:18px; --shadow:0 10px 30px -12px rgba(126,16,21,.28);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:130px}
@@ -31,8 +31,22 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 .card .img img,.modal .img img,.tile img,.about .pics img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .modal .img,.about .pics div{position:relative}
+
+/* Rode stijl: hero als rode band, zoals de gevel */
+.hero{background:radial-gradient(900px 600px at 75% 30%,#DA3B3F,#B3191E 60%,#8E1418);color:#fff}
+.hero h1{color:#fff}.hero h1 em{color:#FFD7A6}
+.hero .lead{color:rgba(255,255,255,.88)}
+.hero .eyebrow{color:#FFD7A6}.hero .eyebrow::before{background:#FFD7A6}
+.hero .promo{background:rgba(255,255,255,.1);border-color:rgba(255,215,166,.7)}
+.hero .promo span{color:rgba(255,255,255,.8)}
+.hero .promo-ico{background:#FFD7A6;color:#8E1418}
+.hero .btn-primary{background:#fff;color:#B3191E}
+.hero .btn-ghost{color:#fff;background:transparent;border-color:rgba(255,255,255,.6)}
+.hero .status-line,.hero .status-line b{color:#fff}
+.hero .badge-fresh{background:#FFD7A6;color:#8E1418}
+.hero .dot.closed{background:#FFD7A6;box-shadow:0 0 0 4px rgba(255,215,166,.25)}
 /* Header */
-header.top{position:sticky;top:0;z-index:50;background:rgba(251,246,238,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top{position:sticky;top:0;z-index:50;background:rgba(255,248,244,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:28px;height:72px}
 .logo{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;font-size:22px;color:var(--brand)}
 .logo-mark{width:40px;height:40px;border-radius:12px;background:var(--brand);display:grid;place-items:center}
@@ -155,7 +169,7 @@ aside.cart{position:sticky;top:96px;background:#fff;border:1px solid var(--line)
 .about .pics svg{width:100%;height:100%;display:block}
 .stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
 .stats b{font-family:Fraunces,serif;font-size:32px;color:#fff;display:block;line-height:1}
-.stats span{font-size:13px;color:#9FB0C4}
+.stats span{font-size:13px;color:#F3C9C4}
 
 /* Reviews */
 .reviews{padding:80px 0}
@@ -181,10 +195,10 @@ aside.cart{position:sticky;top:96px;background:#fff;border:1px solid var(--line)
 .map{background:var(--soft);min-height:360px;position:relative}
 .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.8)}
 
-footer{background:var(--brand-2);color:#9FB0C4;padding:40px 0;font-size:14px}
+footer{background:var(--brand-2);color:#F3C9C4;padding:40px 0;font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 footer .logo{color:#fff}
-footer .logo small{color:#9FB0C4}
+footer .logo small{color:#F3C9C4}
 footer a{color:#fff}
 
 /* Modal */
@@ -260,10 +274,7 @@ body.ext-deliv .opt-hint{display:none}
 
 <header class="top">
   <div class="wrap">
-    <a href="#top" class="logo">
-      <span class="logo-mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 13.5h12v5.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-5.5Z" fill="#E8A33D"/><path d="M7 13.5A4 4 0 0 1 8.6 6a4.5 4.5 0 0 1 6.8 0A4 4 0 0 1 17 13.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-      <span>Chef<small>Eetcafé &amp; Lunchroom</small></span>
-    </a>
+    <a href="#top" class="logo" aria-label="Eethuis &amp; Lunchroom Chef"><img src="img/chef-logo-rood.png" alt="Chef Eethuis &amp; Lunchroom" style="height:54px;width:auto;display:block"></a>
     <nav class="main">
       <a href="#menukaart">Menukaart</a>
       <a href="#over-ons">Ons verhaal</a>
@@ -399,7 +410,7 @@ body.ext-deliv .opt-hint{display:none}
 
 <footer>
   <div class="wrap">
-    <a href="#top" class="logo"><span class="logo-mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 13.5h12v5.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-5.5Z" fill="#E8A33D"/><path d="M7 13.5A4 4 0 0 1 8.6 6a4.5 4.5 0 0 1 6.8 0A4 4 0 0 1 17 13.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Chef<small>Eetcafé &amp; Lunchroom</small></span></a>
+    <a href="#top" class="logo" aria-label="Eethuis &amp; Lunchroom Chef"><img src="img/chef-logo-wit.png" alt="Chef Eethuis &amp; Lunchroom" style="height:70px;width:auto;display:block"></a>
     <span>Döner, Turkse pizza &amp; pizza · afhalen en bezorgen aan de Leyweg, Den Haag.</span>
     <span><a href="mailto:info@eethuischef.nl">info@eethuischef.nl</a></span>
     <span>© <span id="yr"></span> Eetcafé &amp; Lunchroom Chef</span>
@@ -609,7 +620,7 @@ function renderCart(){
   if(ext){
     body.innerHTML=`<div class="ready"><span>🛵</span><div><b>Bezorgen via Thuisbezorgd</b>Bezorgbestellingen lopen via Thuisbezorgd, met hun eigen bezorgkosten en betaalmethodes.</div></div>
      <a class="btn btn-primary checkout" href="${esc(CFG.delivery.thuisbezorgdUrl)}" target="_blank" rel="noopener">Bestel bezorgen op Thuisbezorgd ↗</a>
-     <div class="note">Liever afhalen? Dan bestel en betaal je hier.</div>`;
+     ${PICKUP?'<div class="note">Liever afhalen? Dan bestel en betaal je hier.</div>':''}`;
   }else if(step==="form"&&cart.length){renderForm(body,sub)}
   else{
     const ti=timeInfo();
